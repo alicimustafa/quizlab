@@ -1,1 +1,1 @@
-# This a quiz REST spring MVC profect
+# This a quiz REST spring MVC project
