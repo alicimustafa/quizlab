@@ -33,7 +33,12 @@ public class QuizTest {
 	}
 	
 	@Test
-	public void somokeTest() {
+	public void smokeTest() {
 		assertEquals(true,true);
+	}
+	
+	@Test
+	public void test_Quiz_name_mapped() {
+		assertEquals("spelling", q.getName());
 	}
 }
