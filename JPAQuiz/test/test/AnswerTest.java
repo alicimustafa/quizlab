@@ -10,26 +10,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entity.Quiz;
+import entity.Answer;
+import entity.Question;
 
-public class QuizTest {
-	
+public class AnswerTest {
+
+
 	EntityManagerFactory emf = null;
 	EntityManager em = null;
-	Quiz q;
+	Answer ans;
 	
 	@Before
 	public void setUp() throws Exception{
 		emf = Persistence.createEntityManagerFactory("QuizLab");
 		em = emf.createEntityManager();
-		q = em.find(Quiz.class,1);
+		ans = em.find(Answer.class,1);
 	}
 	
 	@After
 	public void tearDown() throws Exception{
 		em.close();
 		emf.close();
-		q = null;
+		ans = null;
 	}
 	
 	@Test
@@ -38,11 +40,12 @@ public class QuizTest {
 	}
 	
 	@Test
-	public void test_Quiz_name_mapped() {
-		assertEquals("gaming", q.getName());
+	public void test_Answer_AnswerText_mapped() {
+		assertEquals("skyrin", ans.getAnswerText());
 	}
 	
-	public void test_Quiz_questions_mapped() {
-		assertEquals(2, q.getQuestions().size());
+	@Test
+	public void test_Answer_isCorrect_mapped() {
+		assertEquals(1, ans.getIsCorrect());
 	}
 }
