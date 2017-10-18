@@ -2,6 +2,7 @@ package data;
 
 import java.util.List;
 
+import entity.Question;
 import entity.Quiz;
 
 public interface QuizDAO {
@@ -10,4 +11,7 @@ public interface QuizDAO {
 	public Quiz update(int id, String json);
 	public Quiz create(String json);
 	public boolean delete(int id);
+	public List<Question> questionForQuiz(int id);
+	public Question addNewQuestion(String json, int id);
+	public boolean deleteQuestion(int id);
 }

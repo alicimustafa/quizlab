@@ -2,6 +2,7 @@ package entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Question {
@@ -26,8 +28,9 @@ public class Question {
 	@JoinColumn(name = "quiz_id")
 	private Quiz quiz;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "question")
+	@JsonManagedReference(value = "quizAns")
+	@OneToMany(mappedBy = "question", 
+	cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Answer> answers;
 
 	public Quiz getQuiz() {

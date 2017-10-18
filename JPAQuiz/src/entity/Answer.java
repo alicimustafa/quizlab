@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Answer {
@@ -20,7 +20,7 @@ public class Answer {
 
 	private int isCorrect;
 
-	@JsonIgnore
+	@JsonBackReference(value = "quizAns")
 	@ManyToOne
 	@JoinColumn(name = "question_id")
 	private Question question;

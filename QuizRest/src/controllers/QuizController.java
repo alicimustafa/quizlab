@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import data.QuizDAO;
+import entity.Question;
 import entity.Quiz;
 
 @RestController
@@ -56,5 +57,23 @@ public class QuizController {
 	@RequestMapping(path="quizes/{id}", method = RequestMethod.PUT)
 	public Quiz update(@PathVariable int id, @RequestBody String json) {
 		return dao.update(id, json);
+	}
+	
+	@RequestMapping(path="quizes/{id}/questions", method = RequestMethod.GET)
+	public List<Question> questionsIndex(@PathVariable int id){
+		return dao.questionForQuiz(id);
+	}
+	
+	@RequestMapping(path="quizes/{id}/questions", method = RequestMethod.POST)
+	public Question questionCreate(@PathVariable int id, @RequestBody String json) {
+		return dao.addNewQuestion(json, id);
+	}
+	
+	@RequestMapping(path="quizes/{qid}/questions/{id}", method = RequestMethod.DELETE)
+	public String questionDestroy(@PathVariable int id) {
+		if(dao.deleteQuestion(id)) {
+			return "question deleted";
+		}
+		return "some thing went wrong";
 	}
 }
