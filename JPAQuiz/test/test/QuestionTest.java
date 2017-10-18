@@ -38,8 +38,17 @@ public class QuestionTest {
 	}
 	
 	@Test
-	public void test_Quiz_questionText_mapped() {
+	public void test_Question_questionText_mapped() {
 		assertEquals("name of eldar Scroll 5", q.getQuestionText());
+	}
+	
+	@Test
+	public void test_Question_quiz_mapped() {
+		assertEquals("gaming", q.getQuiz().getName());
+	}
+	
+	public void test_Question_answers_mapped() {
+		assertEquals(2 , q.getAnswers().size());
 	}
 	
 }

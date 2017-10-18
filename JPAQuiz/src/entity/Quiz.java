@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Quiz {
 
@@ -17,6 +19,7 @@ public class Quiz {
 
 	private String name;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "quiz")
 	private List<Question> questions;
 

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Question {
 
@@ -19,10 +21,12 @@ public class Question {
 
 	private String questionText;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "quiz_id")
 	private Quiz quiz;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answers;
 
