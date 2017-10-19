@@ -64,6 +64,11 @@ public class QuizController {
 		return dao.questionForQuiz(id);
 	}
 	
+	@RequestMapping(path="quizes/{qid}/questions/{id}", method = RequestMethod.GET)
+	public Question showQuestion(@PathVariable int id) {
+		return dao.getQuestionById(id);
+	}
+
 	@RequestMapping(path="quizes/{id}/questions", method = RequestMethod.POST)
 	public Question questionCreate(@PathVariable int id, @RequestBody String json) {
 		return dao.addNewQuestion(json, id);
@@ -75,5 +80,24 @@ public class QuizController {
 			return "question deleted";
 		}
 		return "some thing went wrong";
+	}
+	
+	@RequestMapping(path="quizes/{qid}/questions/{id}", method = RequestMethod.PUT)
+	public Question questionUpdate(@PathVariable int id, @RequestBody String json) {
+		return dao.changeQuestion(json, id);
+	}
+	
+	@RequestMapping(path="quizes/{qid}/questions/{id}/answers", method = RequestMethod.POST)
+	public Question createAnswer(@PathVariable int id, @RequestBody String json) {
+		return dao.addAnswerToQuestion(json, id);
+	}
+	
+	@RequestMapping(path="quizes/{qid}/questions/{quid}/answers/{id}", method = RequestMethod.PUT)
+	public Question updateAnswer(@PathVariable int id, @RequestBody String json) {
+		return dao.updateAnswer(json, id);
+	}
+	@RequestMapping(path="quizes/{qid}/questions/{quid}/answers/{id}", method = RequestMethod.DELETE)
+	public Question destroyAnswer(@PathVariable int id) {
+		return dao.removeAnswer(id);
 	}
 }
